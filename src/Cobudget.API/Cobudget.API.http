@@ -1,0 +1,6 @@
+@Cobudget.API_HostAddress = http://localhost:5193
+
+GET {{Cobudget.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
