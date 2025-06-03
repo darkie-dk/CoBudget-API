@@ -2,13 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace CoBudget.Infrastructure.DataAccess;
-public class CoBudgetDbContext : DbContext
+internal class CoBudgetDbContext : DbContext
 {
-    public CoBudgetDbContext(DbContextOptions<CoBudgetDbContext> options)
-       : base(options)
-    {
-    }
-
     public DbSet<Expense> Expenses { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
