@@ -1,4 +1,4 @@
-﻿using CoBudget.Communication.Enum;
+﻿using CoBudget.Domain.Enum;
 
 namespace CoBudget.Domain.Entities;
 

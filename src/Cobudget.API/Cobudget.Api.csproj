@@ -14,6 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CoBudget.Application\CoBudget.Application.csproj" />
     <ProjectReference Include="..\CoBudget.Communication\CoBudget.Communication.csproj" />
+    <ProjectReference Include="..\CoBudget.Domain\CoBudget.Domain.csproj" />
+    <ProjectReference Include="..\CoBudget.Infrastructure\CoBudget.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

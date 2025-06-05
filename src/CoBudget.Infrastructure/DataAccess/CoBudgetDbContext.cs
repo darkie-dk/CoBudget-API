@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace CoBudget.Infrastructure.DataAccess;
-internal class CoBudgetDbContext : DbContext
+public class CoBudgetDbContext : DbContext
 {
     public DbSet<Expense> Expenses { get; set; }
 
@@ -10,7 +10,7 @@ internal class CoBudgetDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            var connString = "Server=localhost;Database=cobudgetDb;Trusted_Connection=True;TrustServerCertificate=True;";
+            var connString = "Server=localhost;Database=cobudgetdb;Trusted_Connection=True;TrustServerCertificate=True;";
 
             optionsBuilder.UseSqlServer(connString);
         }

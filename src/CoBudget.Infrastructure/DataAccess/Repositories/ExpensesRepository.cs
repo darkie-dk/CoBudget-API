@@ -10,7 +10,8 @@ internal class ExpensesRepository : IExpensesRepository
         var dbContext = new CoBudgetDbContext();
 
         dbContext.Expenses.Add(expense);
-    }
 
+        dbContext.SaveChanges();
+    }
 
 }

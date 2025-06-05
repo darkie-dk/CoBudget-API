@@ -1,6 +1,7 @@
 using CoBudget.api.Filters;
 using CoBudget.api.Middleware;
-using Microsoft.EntityFrameworkCore;
+using CoBudget.Application;
+using CoBudget.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,14 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDbContext<CoBudgetDbContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-//});
+builder.Services.AddMvc(options => options.Filters.Add(typeof(Exceptionfilter)));
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
-builder.Services.AddMvc(options => options.Filters.Add(typeof(Exceptionfilter)));
+builder.Services.AddInfrasctructure();
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

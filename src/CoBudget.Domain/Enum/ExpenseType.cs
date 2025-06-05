@@ -1,4 +1,4 @@
-﻿namespace CoBudget.Communication.Enum;
+﻿namespace CoBudget.Domain.Enum;
 
 public enum ExpenseType
 {
