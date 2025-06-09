@@ -1,6 +1,7 @@
 ﻿using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using CoBudget.Domain.Entities;
+using CoBudget.Domain.Repositories;
 using CoBudget.Domain.Repositories.Expenses;
 using CoBudget.Exception.ExceptionsBase;
 namespace CoBudget.Application.UseCases.Expenses.Register;
@@ -8,9 +9,11 @@ namespace CoBudget.Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
     private readonly IExpensesRepository _repository;
-    public RegisterExpenseUseCase(IExpensesRepository repository)
+    private readonly IWorkUnity _workUnity;
+    public RegisterExpenseUseCase(IExpensesRepository repository, IWorkUnity workUnity)
     {
         _repository = repository;
+        _workUnity = workUnity;
     }
     public ResponseExpenseJson Execute(RequestRegisterExpenseJson request)
     {
@@ -26,6 +29,8 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
         };
 
         _repository.Add(entity);
+
+        _workUnity.Commit();
 
         return new ResponseExpenseJson();
     }

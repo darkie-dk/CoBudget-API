@@ -2,6 +2,6 @@
 
 public class ResponseExpenseJson
 {
-    public string Title { get; set; } = string.Empty;
+    public string Title { get; set; } = "Suuuuucesssow!";
 }
 

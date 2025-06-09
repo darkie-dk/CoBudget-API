@@ -2,6 +2,7 @@ using CoBudget.api.Filters;
 using CoBudget.api.Middleware;
 using CoBudget.Application;
 using CoBudget.Infrastructure;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(Exceptionfilter)))
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
-builder.Services.AddInfrasctructure();
+builder.Services.AddInfrasctructure(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
