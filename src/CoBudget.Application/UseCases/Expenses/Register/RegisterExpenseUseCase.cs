@@ -1,4 +1,5 @@
-﻿using CoBudget.Communication.Request;
+﻿using AutoMapper;
+using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using CoBudget.Domain.Entities;
 using CoBudget.Domain.Repositories;
@@ -10,29 +11,24 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
     private readonly IExpensesRepository _repository;
     private readonly IWorkUnity _workUnity;
-    public RegisterExpenseUseCase(IExpensesRepository repository, IWorkUnity workUnity)
+    private readonly IMapper _mapper;
+    public RegisterExpenseUseCase(IExpensesRepository repository, IWorkUnity workUnity, IMapper mapper)
     {
         _repository = repository;
         _workUnity = workUnity;
+        _mapper = mapper;
     }
-    public ResponseExpenseJson Execute(RequestRegisterExpenseJson request)
+    public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
     {
         Validate(request);
 
-        var entity = new Expense
-        {
-            Amount = request.Amount,
-            Date = request.Date,
-            Title = request.Title,
-            Description = request.Description, 
-            ExpenseType = (Domain.Enum.ExpenseType)request.ExpenseType
-        };
+        var entity = _mapper.Map<Expense>(request);
 
-        _repository.Add(entity);
+        await _repository.Add(entity);
 
-        _workUnity.Commit();
+        await _workUnity.Commit();
 
-        return new ResponseExpenseJson();
+        return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
     }
 
     private void Validate(RequestRegisterExpenseJson request)

@@ -9,5 +9,5 @@ internal class WorkUnity : IWorkUnity
     {
         _coBudgetDbContext = dbContext;
     }
-    public void Commit() => _coBudgetDbContext.SaveChanges();
+    public async Task Commit() => await _coBudgetDbContext.SaveChangesAsync();
 }

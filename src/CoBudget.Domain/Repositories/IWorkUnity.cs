@@ -2,5 +2,5 @@
 
 public interface IWorkUnity
 {
-    void Commit();
+    Task Commit();
 }

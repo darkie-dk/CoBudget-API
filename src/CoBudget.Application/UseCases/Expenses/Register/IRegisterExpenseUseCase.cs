@@ -5,5 +5,5 @@ namespace CoBudget.Application.UseCases.Expenses.Register;
 
 public interface IRegisterExpenseUseCase
 {
-    ResponseExpenseJson Execute(RequestRegisterExpenseJson request);
+    Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request);
 }
