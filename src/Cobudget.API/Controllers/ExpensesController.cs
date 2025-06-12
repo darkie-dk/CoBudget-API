@@ -1,4 +1,6 @@
-﻿using CoBudget.Application.UseCases.Expenses.Register;
+﻿using CoBudget.Application.UseCases.Expenses.GetAll;
+using CoBudget.Application.UseCases.Expenses.GetById;
+using CoBudget.Application.UseCases.Expenses.Register;
 using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +27,28 @@ public class ExpensesController : ControllerBase
     [ProducesResponseType(typeof(ResponseExpensesJson), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllExpenses(
-        [FromServices] IRegisterExpenseUseCase useCase,
-        [FromBody] RequestRegisterExpenseJson request)
+        [FromServices] IGetAllExpensesUseCase useCase)
     {
-        var response = await useCase.Execute(request);
+        var response = await useCase.Execute();
 
-        return Created(string.Empty, response);
+        if (response.Expenses.Count != 0) return Ok(response);
+
+        return NoContent();
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(ResponseExpenseJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+        [FromServices] IGetByIdUseCase useCase,
+        [FromRoute] long id)
+    {
+        var response = await useCase.Execute(id);
+
+        if (response.id.Equals(null)) return NotFound(response);
+
+        return Ok(response);
     }
 }
 

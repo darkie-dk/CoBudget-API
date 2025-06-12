@@ -1,4 +1,6 @@
 ﻿using CoBudget.Application.AutoMapper;
+using CoBudget.Application.UseCases.Expenses.GetAll;
+using CoBudget.Application.UseCases.Expenses.GetById;
 using CoBudget.Application.UseCases.Expenses.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +22,8 @@ namespace CoBudget.Application
         private static void AddUseCase(IServiceCollection services) 
         {
             services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
+            services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
+            services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
         }
     }
 }
