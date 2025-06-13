@@ -3,16 +3,17 @@ using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using CoBudget.Domain.Entities;
 using CoBudget.Domain.Repositories;
-using CoBudget.Domain.Repositories.Expenses;
 using CoBudget.Exception.ExceptionsBase;
+using CoBudget.Infrastructure.DataAccess.Repositories;
+
 namespace CoBudget.Application.UseCases.Expenses.Register;
 
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
-    private readonly IExpensesRepository _repository;
+    private readonly IExpensesWriteRepository _repository;
     private readonly IWorkUnity _workUnity;
     private readonly IMapper _mapper;
-    public RegisterExpenseUseCase(IExpensesRepository repository, IWorkUnity workUnity, IMapper mapper)
+    public RegisterExpenseUseCase(IExpensesWriteRepository repository, IWorkUnity workUnity, IMapper mapper)
     {
         _repository = repository;
         _workUnity = workUnity;

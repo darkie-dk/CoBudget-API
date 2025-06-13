@@ -1,10 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using CoBudget.Domain.Entities;
-using CoBudget.Domain.Repositories.Expenses;
+﻿using CoBudget.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace CoBudget.Infrastructure.DataAccess.Repositories;
 
-internal class ExpensesRepository : IExpensesRepository
+internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepository
 {
     private readonly CoBudgetDbContext _coBudgetDbContext;
     public ExpensesRepository(CoBudgetDbContext dbContext)

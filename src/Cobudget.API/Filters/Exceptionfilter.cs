@@ -23,15 +23,21 @@ public class Exceptionfilter : IExceptionFilter
 
     private void HandleException(ExceptionContext context)
     {
-        if (context.Exception is ValidationException)
+        if (context.Exception is ValidationException validationException)
         {
-            var ex = (ValidationException)context.Exception;
-
-            var errorResponse = new ResponseErrorJson(errorMessage: ex.Errors);
+            var errorResponse = new ResponseErrorJson(errorMessage: validationException.Errors);
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Result = new BadRequestObjectResult(errorResponse);
-        } else
+        }
+        else if (context.Exception is NotFoundException notFoudnException)
+        {
+            var errorResponse = new ResponseErrorJson(errorMessage: notFoudnException.Message);
+
+            context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+            context.Result = new NotFoundObjectResult(errorResponse);
+        }
+        else
         {
 
             var errorResponse = new ResponseErrorJson(errorMessage: context.Exception.Message);
