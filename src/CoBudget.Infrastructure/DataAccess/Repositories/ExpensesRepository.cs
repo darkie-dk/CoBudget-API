@@ -15,6 +15,16 @@ internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepos
         await _coBudgetDbContext.Expenses.AddAsync(expense);
     }
 
+    public async Task<bool> Delete(long id)
+    {
+        var result = await _coBudgetDbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+        if (result is null) return false; 
+        
+        _coBudgetDbContext.Expenses.Remove(result);
+
+        return true;
+    }
+
     public async Task<List<Expense>> GetAll()
     {
         return await _coBudgetDbContext.Expenses.AsNoTracking().ToListAsync();

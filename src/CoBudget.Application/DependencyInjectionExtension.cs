@@ -1,4 +1,5 @@
 ﻿using CoBudget.Application.AutoMapper;
+using CoBudget.Application.UseCases.Expenses.Delete;
 using CoBudget.Application.UseCases.Expenses.GetAll;
 using CoBudget.Application.UseCases.Expenses.GetById;
 using CoBudget.Application.UseCases.Expenses.Register;
@@ -24,6 +25,7 @@ namespace CoBudget.Application
             services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
             services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
             services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
+            services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         }
     }
 }

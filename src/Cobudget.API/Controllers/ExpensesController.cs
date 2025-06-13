@@ -1,4 +1,5 @@
-﻿using CoBudget.Application.UseCases.Expenses.GetAll;
+﻿using CoBudget.Application.UseCases.Expenses.Delete;
+using CoBudget.Application.UseCases.Expenses.GetAll;
 using CoBudget.Application.UseCases.Expenses.GetById;
 using CoBudget.Application.UseCases.Expenses.Register;
 using CoBudget.Communication.Request;
@@ -49,6 +50,20 @@ public class ExpensesController : ControllerBase
         if (response.id.Equals(null)) return NotFound(response);
 
         return Ok(response);
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+        [FromServices] IDeleteExpenseUseCase useCase,
+        [FromRoute] long id)
+    {
+        await useCase.Execute(id);
+
+
+        return NoContent();
     }
 }
 
