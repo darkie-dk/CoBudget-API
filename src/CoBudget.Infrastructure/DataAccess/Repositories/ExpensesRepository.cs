@@ -1,8 +1,9 @@
 ﻿using CoBudget.Domain.Entities;
+using CoBudget.Domain.Repositories.Expenses;
 using Microsoft.EntityFrameworkCore;
 namespace CoBudget.Infrastructure.DataAccess.Repositories;
 
-internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepository
+internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepository, IExpenseUpdateRepository
 {
     private readonly CoBudgetDbContext _coBudgetDbContext;
     public ExpensesRepository(CoBudgetDbContext dbContext)
@@ -30,8 +31,18 @@ internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepos
         return await _coBudgetDbContext.Expenses.AsNoTracking().ToListAsync();
     }
 
-    public async Task<Expense?> GetById(long id)
+    async Task<Expense?> IExpensesReadRepository.GetById(long id)
     {
         return await _coBudgetDbContext.Expenses.AsNoTracking().FirstOrDefaultAsync(expense => expense.Id == id);
+    }
+
+    async Task<Expense?> IExpenseUpdateRepository.GetById(long id)
+    {
+        return await _coBudgetDbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+    }
+
+    public void Update(Expense expense)
+    {
+        _coBudgetDbContext.Expenses.Update(expense);
     }
 }

@@ -3,6 +3,7 @@ using CoBudget.Application.UseCases.Expenses.Delete;
 using CoBudget.Application.UseCases.Expenses.GetAll;
 using CoBudget.Application.UseCases.Expenses.GetById;
 using CoBudget.Application.UseCases.Expenses.Register;
+using CoBudget.Application.UseCases.Expenses.Update;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoBudget.Application
@@ -26,6 +27,7 @@ namespace CoBudget.Application
             services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
             services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
             services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
+            services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         }
     }
 }

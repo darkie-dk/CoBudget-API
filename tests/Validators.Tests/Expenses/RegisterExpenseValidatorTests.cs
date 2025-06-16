@@ -1,4 +1,4 @@
-﻿using CoBudget.Application.UseCases.Expenses.Register;
+﻿using CoBudget.Application.UseCases.Expenses;
 using CoBudget.Communication.Enum;
 using CoBudget.Exception;
 using CommonTestsUtilities.Requests;
@@ -11,7 +11,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Success()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
         
 
@@ -23,7 +23,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_Title_Empty()
     { 
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.Title = string.Empty;
 
@@ -36,7 +36,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_Date_Empty()
     { 
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.Date = DateTime.UtcNow.AddDays(2);
 
@@ -49,7 +49,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_ExpenseType_Empty()
     { 
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.ExpenseType = (ExpenseType)1;
 
@@ -63,7 +63,7 @@ public class RegisterExpenseValidatorTests
     [InlineData(0)]
     public void Error_Amount_Empty(decimal amount)
     { 
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
         request.Amount = amount;
 
