@@ -51,7 +51,7 @@ public class RegisterExpenseValidatorTests
     { 
         var validator = new ExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
-        request.ExpenseType = (ExpenseType)1;
+        request.PaymentType = (PaymentType)1;
 
         var result = validator.Validate(request);
 

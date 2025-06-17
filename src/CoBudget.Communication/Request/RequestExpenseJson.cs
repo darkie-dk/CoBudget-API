@@ -8,6 +8,7 @@ public class RequestExpenseJson
     public string Description { get; set; } = string.Empty;
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }
-    public ExpenseType ExpenseType { get; set; }
+    public PaymentType ExpenseType { get; set; }
+    public PaymentType PaymentType { get; set; }
 }
 

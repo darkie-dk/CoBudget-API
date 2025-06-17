@@ -2,7 +2,6 @@ using CoBudget.api.Filters;
 using CoBudget.api.Middleware;
 using CoBudget.Application;
 using CoBudget.Infrastructure;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

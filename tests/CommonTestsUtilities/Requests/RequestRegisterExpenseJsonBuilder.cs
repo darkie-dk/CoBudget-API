@@ -13,6 +13,6 @@ public class RequestRegisterExpenseJsonBuilder
             .RuleFor(req => req.Description, faker => faker.Commerce.ProductDescription())
             .RuleFor(req => req.Amount, faker => faker.Random.Decimal())
             .RuleFor(req => req.Date, faker => faker.Date.Past())
-            .RuleFor(req => req.ExpenseType, faker => faker.PickRandom<ExpenseType>());
+            .RuleFor(req => req.PaymentType, faker => faker.PickRandom<PaymentType>());
     }
 }
