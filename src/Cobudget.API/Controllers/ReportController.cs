@@ -1,4 +1,5 @@
-﻿using CoBudget.Application.UseCases.Reports;
+﻿using CoBudget.Application.UseCases.Expenses.Reports.Excel;
+using CoBudget.Application.UseCases.Expenses.Reports.Pdf;
 using CoBudget.Communication.Request;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -11,13 +12,28 @@ public class ReportController : ControllerBase
     [HttpGet("excel")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel([FromHeader] DateOnly month, [FromServices] IGenerateExpenseReportUseCase useCase)
+    public async Task<IActionResult> GetExcel([FromHeader] DateOnly date, [FromServices] IGenerateExpenseReportExcelUseCase useCase)
     {
-        byte[] file = await useCase.Execute(month);
+        byte[] file = await useCase.Execute(date);
 
         if (file.Length > 0)
         {
-            return File(file, MediaTypeNames.Application.Octet, "report.xlsx");
+            return File(file, MediaTypeNames.Application.Octet, $"report_{date}.xlsx");
+        }
+
+        return NoContent();
+    }
+
+    [HttpGet("pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPdf([FromHeader] DateOnly date, [FromServices] IGenerateExpensesReportPdfUseCase useCase)
+    {
+        byte[] file = await useCase.Execute(date);
+
+        if (file.Length > 0)
+        {
+            return File(file, MediaTypeNames.Application.Pdf, $"report_{date}.pdf");
         }
 
         return NoContent();

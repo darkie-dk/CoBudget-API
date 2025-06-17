@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CoBudget.Communication.Responses;
+using CoBudget.Domain.Repositories.Expenses;
 using CoBudget.Exception;
 using CoBudget.Exception.ExceptionsBase;
-using CoBudget.Infrastructure.DataAccess.Repositories;
 
 namespace CoBudget.Application.UseCases.Expenses.GetById;
 

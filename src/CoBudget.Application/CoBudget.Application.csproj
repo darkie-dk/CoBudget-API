@@ -19,4 +19,8 @@
     <ProjectReference Include="..\CoBudget.Exception\CoBudget.Exception.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Expenses\Reports\NewFolder\" />
+  </ItemGroup>
+
 </Project>

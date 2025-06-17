@@ -3,22 +3,17 @@ using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using CoBudget.Domain.Entities;
 using CoBudget.Domain.Repositories;
+using CoBudget.Domain.Repositories.Expenses;
 using CoBudget.Exception.ExceptionsBase;
-using CoBudget.Infrastructure.DataAccess.Repositories;
 
 namespace CoBudget.Application.UseCases.Expenses.Register;
 
-public class RegisterExpenseUseCase : IRegisterExpenseUseCase
+public class RegisterExpenseUseCase(IExpensesWriteRepository repository, IWorkUnity workUnity, IMapper mapper) : IRegisterExpenseUseCase
 {
-    private readonly IExpensesWriteRepository _repository;
-    private readonly IWorkUnity _workUnity;
-    private readonly IMapper _mapper;
-    public RegisterExpenseUseCase(IExpensesWriteRepository repository, IWorkUnity workUnity, IMapper mapper)
-    {
-        _repository = repository;
-        _workUnity = workUnity;
-        _mapper = mapper;
-    }
+    private readonly IExpensesWriteRepository _repository = repository;
+    private readonly IWorkUnity _workUnity = workUnity;
+    private readonly IMapper _mapper = mapper;
+
     public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)
     {
         Validate(request);
@@ -32,7 +27,7 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
         return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
     }
 
-    private void Validate(RequestExpenseJson request)
+    private static void Validate(RequestExpenseJson request)
     {
         var validator = new ExpenseValidator();
 

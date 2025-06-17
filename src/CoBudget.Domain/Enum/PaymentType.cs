@@ -1,6 +1,6 @@
 ﻿namespace CoBudget.Domain.Enum;
 
-public enum ExpenseType
+public enum PaymentType
 {
     Cash = 0,
     CreditCard = 1,
