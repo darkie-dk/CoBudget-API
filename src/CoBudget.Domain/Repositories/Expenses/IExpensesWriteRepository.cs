@@ -1,6 +1,6 @@
 ﻿using CoBudget.Domain.Entities;
 
-namespace CoBudget.Infrastructure.DataAccess.Repositories;
+namespace CoBudget.Domain.Repositories.Expenses;
 
 public interface IExpensesWriteRepository
 {

@@ -45,4 +45,19 @@ internal class ExpensesRepository : IExpensesReadRepository, IExpensesWriteRepos
     {
         _coBudgetDbContext.Expenses.Update(expense);
     }
+
+    public async Task<List<Expense>> FilterByMonth(DateOnly date)
+    { 
+        var startDate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
+
+        var endDayDate = DateTime.DaysInMonth(year: date.Year, month: date.Month);
+        var endDate = new DateTime(year: date.Year, month: date.Month, day: endDayDate, hour: 23, minute: 59, second: 59);
+
+        return await _coBudgetDbContext
+            .Expenses
+            .AsNoTracking()
+            .Where(expense => expense.Date >= startDate && expense.Date <= endDate)
+            .OrderBy(expense => expense.Date)
+            .ToListAsync();
+    }
 }
