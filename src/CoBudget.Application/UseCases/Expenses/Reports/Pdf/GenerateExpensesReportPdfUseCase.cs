@@ -1,10 +1,20 @@
-﻿using CoBudget.Domain.Repositories.Expenses;
+﻿using CoBudget.Application.UseCases.Expenses.Reports.Pdf.Fonts;
+using CoBudget.Domain.Repositories.Expenses;
+using PdfSharp.Fonts;
 
 namespace CoBudget.Application.UseCases.Expenses.Reports.Pdf;
 
-public class GenerateExpensesReportPdfUseCase(IExpensesReadRepository repository) : IGenerateExpensesReportPdfUseCase
+public class GenerateExpensesReportPdfUseCase: IGenerateExpensesReportPdfUseCase
 {
-    private IExpensesReadRepository _expensesReadRepository = repository;
+    private readonly IExpensesReadRepository _expensesReadRepository;
+
+    public GenerateExpensesReportPdfUseCase(IExpensesReadRepository repository)
+    {
+        _expensesReadRepository = repository;
+
+        GlobalFontSettings.FontResolver = new ExpensesReportFontResolver();
+    }
+
     public async Task<byte[]> Execute(DateOnly date)
     {
         var expenses = await _expensesReadRepository.FilterByMonth(date) ?? [];
