@@ -20,17 +20,10 @@ public class ExpensesReportFontResolver : IFontResolver
 
     public FontResolverInfo? ResolveTypeface(string familyName, bool bold, bool italic)
     {
-        var font = new Font
-        {
-            Name = "WorkSans-Regular",
-            Bold = bold, 
-            Italic = italic,
-        };
-
-        return new FontResolverInfo("");    
+        return new FontResolverInfo(familyName);    
     }
         
-    private Stream? ReadFontFile(string faceName)
+    private static Stream? ReadFontFile(string faceName)
     {
         var assembly = Assembly.GetExecutingAssembly();
 

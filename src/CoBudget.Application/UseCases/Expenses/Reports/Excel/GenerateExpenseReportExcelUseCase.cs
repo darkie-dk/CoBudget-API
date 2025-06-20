@@ -66,13 +66,13 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
 
     private static void InsertHeader(IXLWorksheet worksheet)
     {
-        worksheet.Cell("A1").Value = ResourceReportTableHeaders.TITLE;
-        worksheet.Cell("B1").Value = ResourceReportTableHeaders.CATEGORY;
-        worksheet.Cell("C1").Value = ResourceReportTableHeaders.STATUS;
-        worksheet.Cell("D1").Value = ResourceReportTableHeaders.AMOUNT;
-        worksheet.Cell("E1").Value = ResourceReportTableHeaders.PAYMENT_TYPE;
-        worksheet.Cell("F1").Value = ResourceReportTableHeaders.DATE;
-        worksheet.Cell("G1").Value = ResourceReportTableHeaders.DESCRIPTION;
+        worksheet.Cell("A1").Value = ResourceReportMessages.TITLE;
+        worksheet.Cell("B1").Value = ResourceReportMessages.CATEGORY;
+        worksheet.Cell("C1").Value = ResourceReportMessages.STATUS;
+        worksheet.Cell("D1").Value = ResourceReportMessages.AMOUNT;
+        worksheet.Cell("E1").Value = ResourceReportMessages.PAYMENT_TYPE;
+        worksheet.Cell("F1").Value = ResourceReportMessages.DATE;
+        worksheet.Cell("G1").Value = ResourceReportMessages.DESCRIPTION;
 
         var headerRange = worksheet.Range("A1:F1");
         headerRange.Style.Font.Bold = true;

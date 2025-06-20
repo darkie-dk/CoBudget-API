@@ -118,24 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AMOUNT" xml:space="preserve">
-    <value>Amount</value>
+    <value>Total</value>
+  </data>
+  <data name="CASH" xml:space="preserve">
+    <value>Dinheiro</value>
   </data>
   <data name="CATEGORY" xml:space="preserve">
-    <value>Category</value>
+    <value>Categoria</value>
+  </data>
+  <data name="CREDIT_CARD" xml:space="preserve">
+    <value>Cartão de Crédito</value>
   </data>
   <data name="DATE" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
+  </data>
+  <data name="DEBIT_CARD" xml:space="preserve">
+    <value>Cartão de Débito</value>
   </data>
   <data name="DESCRIPTION" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrição</value>
+  </data>
+  <data name="ELETRONIC_TRANSFER" xml:space="preserve">
+    <value>PIX</value>
+  </data>
+  <data name="EXPENSES_OF" xml:space="preserve">
+    <value>Despesas de</value>
   </data>
   <data name="PAYMENT_TYPE" xml:space="preserve">
-    <value>Payment Type</value>
+    <value>Tipo de pagamento</value>
   </data>
   <data name="STATUS" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="TITLE" xml:space="preserve">
-    <value>Title</value>
+    <value>Título</value>
+  </data>
+  <data name="TOTAL_SPENT_IN" xml:space="preserve">
+    <value>Total gasto em {0}</value>
   </data>
 </root>
