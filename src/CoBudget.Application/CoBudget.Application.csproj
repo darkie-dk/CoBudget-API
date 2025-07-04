@@ -34,4 +34,8 @@
     <ProjectReference Include="..\CoBudget.Exception\CoBudget.Exception.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logo\" />
+  </ItemGroup>
+
 </Project>
