@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using CoBudget.Domain;
 using CoBudget.Domain.Enum;
+using CoBudget.Domain.Extensions;
 using CoBudget.Domain.Repositories.Expenses;
 
 namespace CoBudget.Application.UseCases.Expenses.Reports.Excel;
@@ -31,7 +32,7 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
             worksheet.Cell($"E{row}").Value = expense.Description;
             worksheet.Cell($"D{row}").Value = expense.Amount;
 
-            worksheet.Cell($"C{row}").Value = ConvertPaymentType(expense.PaymentType);
+            worksheet.Cell($"C{row}").Value = expense.PaymentType.PaymentTypeToString();
             worksheet.Cell($"C{row}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,##0.00";
 
             worksheet.Cell($"F{row}").Value = ConvertDateTimeOffsetToLocal(expense.Date);
@@ -45,18 +46,6 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
         workbook.SaveAs(file);
 
         return file.ToArray();
-    }
-
-    private static string ConvertPaymentType(PaymentType payment)
-    {
-        return payment switch
-        {
-            PaymentType.Cash => "Dinheiro",
-            PaymentType.CreditCard => "Cartão de Crédio",
-            PaymentType.DebitCard => "Cartão de Débito",
-            PaymentType.EletronicTransfer => "Transferencia Bancaria",
-            _ => string.Empty
-        };
     }
 
     private static string ConvertDateTimeOffsetToLocal(DateTimeOffset date)
