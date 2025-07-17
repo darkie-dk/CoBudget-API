@@ -22,14 +22,14 @@ namespace CoBudget.Domain {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceReportTableHeaders {
+    public class ResourceReportMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceReportTableHeaders() {
+        internal ResourceReportMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CoBudget.Domain {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CoBudget.Domain.ResourceReportTableHeaders", typeof(ResourceReportTableHeaders).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CoBudget.Domain.ResourceReportMessages", typeof(ResourceReportMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,11 +70,29 @@ namespace CoBudget.Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash.
+        /// </summary>
+        public static string CASH {
+            get {
+                return ResourceManager.GetString("CASH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CATEGORY {
             get {
                 return ResourceManager.GetString("CATEGORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        public static string CREDIT_CARD {
+            get {
+                return ResourceManager.GetString("CREDIT_CARD", resourceCulture);
             }
         }
         
@@ -88,11 +106,38 @@ namespace CoBudget.Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debit Card.
+        /// </summary>
+        public static string DEBIT_CARD {
+            get {
+                return ResourceManager.GetString("DEBIT_CARD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string DESCRIPTION {
             get {
                 return ResourceManager.GetString("DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electronic transfer.
+        /// </summary>
+        public static string ELETRONIC_TRANSFER {
+            get {
+                return ResourceManager.GetString("ELETRONIC_TRANSFER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenses of.
+        /// </summary>
+        public static string EXPENSES_OF {
+            get {
+                return ResourceManager.GetString("EXPENSES_OF", resourceCulture);
             }
         }
         
@@ -120,6 +165,15 @@ namespace CoBudget.Domain {
         public static string TITLE {
             get {
                 return ResourceManager.GetString("TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total spent in {0}.
+        /// </summary>
+        public static string TOTAL_SPENT_IN {
+            get {
+                return ResourceManager.GetString("TOTAL_SPENT_IN", resourceCulture);
             }
         }
     }

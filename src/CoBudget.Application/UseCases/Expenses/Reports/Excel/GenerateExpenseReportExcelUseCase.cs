@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using CoBudget.Domain;
 using CoBudget.Domain.Enum;
+using CoBudget.Domain.Extensions;
 using CoBudget.Domain.Repositories.Expenses;
 
 namespace CoBudget.Application.UseCases.Expenses.Reports.Excel;
@@ -31,7 +32,7 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
             worksheet.Cell($"E{row}").Value = expense.Description;
             worksheet.Cell($"D{row}").Value = expense.Amount;
 
-            worksheet.Cell($"C{row}").Value = ConvertPaymentType(expense.PaymentType);
+            worksheet.Cell($"C{row}").Value = expense.PaymentType.PaymentTypeToString();
             worksheet.Cell($"C{row}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,##0.00";
 
             worksheet.Cell($"F{row}").Value = ConvertDateTimeOffsetToLocal(expense.Date);
@@ -47,18 +48,6 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
         return file.ToArray();
     }
 
-    private static string ConvertPaymentType(PaymentType payment)
-    {
-        return payment switch
-        {
-            PaymentType.Cash => "Dinheiro",
-            PaymentType.CreditCard => "Cartão de Crédio",
-            PaymentType.DebitCard => "Cartão de Débito",
-            PaymentType.EletronicTransfer => "Transferencia Bancaria",
-            _ => string.Empty
-        };
-    }
-
     private static string ConvertDateTimeOffsetToLocal(DateTimeOffset date)
     {
         return date.ToLocalTime().ToString(); 
@@ -66,13 +55,13 @@ public class GenerateExpenseReportExcelUseCase(IExpensesReadRepository expensesR
 
     private static void InsertHeader(IXLWorksheet worksheet)
     {
-        worksheet.Cell("A1").Value = ResourceReportTableHeaders.TITLE;
-        worksheet.Cell("B1").Value = ResourceReportTableHeaders.CATEGORY;
-        worksheet.Cell("C1").Value = ResourceReportTableHeaders.STATUS;
-        worksheet.Cell("D1").Value = ResourceReportTableHeaders.AMOUNT;
-        worksheet.Cell("E1").Value = ResourceReportTableHeaders.PAYMENT_TYPE;
-        worksheet.Cell("F1").Value = ResourceReportTableHeaders.DATE;
-        worksheet.Cell("G1").Value = ResourceReportTableHeaders.DESCRIPTION;
+        worksheet.Cell("A1").Value = ResourceReportMessages.TITLE;
+        worksheet.Cell("B1").Value = ResourceReportMessages.CATEGORY;
+        worksheet.Cell("C1").Value = ResourceReportMessages.STATUS;
+        worksheet.Cell("D1").Value = ResourceReportMessages.AMOUNT;
+        worksheet.Cell("E1").Value = ResourceReportMessages.PAYMENT_TYPE;
+        worksheet.Cell("F1").Value = ResourceReportMessages.DATE;
+        worksheet.Cell("G1").Value = ResourceReportMessages.DESCRIPTION;
 
         var headerRange = worksheet.Range("A1:F1");
         headerRange.Style.Font.Bold = true;
