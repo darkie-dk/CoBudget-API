@@ -2,6 +2,7 @@ using CoBudget.api.Filters;
 using CoBudget.api.Middleware;
 using CoBudget.Application;
 using CoBudget.Infrastructure;
+using CoBudget.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,4 +34,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await MigrateDatabase();
+
 app.Run();
+
+async Task MigrateDatabase()
+{
+    await using var scope = app.Services.CreateAsyncScope();
+
+    await DataBaseMigration.MigrateDatabase(scope.ServiceProvider);
+
+   
+}
