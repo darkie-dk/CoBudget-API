@@ -3,22 +3,24 @@ using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
 using CoBudget.Domain.Entities;
 using CoBudget.Domain.Repositories;
-using CoBudget.Domain.Repositories.Expenses;
+using CoBudget.Domain.Repositories.User;
 using CoBudget.Domain.Security;
+using CoBudget.Exception;
 using CoBudget.Exception.ExceptionsBase;
+using FluentValidation.Results;
 
 namespace CoBudget.Application.UseCases.Users.Register;
 
-public class RegisterUserUseCase(IExpensesWriteRepository repository, IWorkUnity workUnity, IMapper mapper, IPasswordEncripter encripter) : IRegisterUserUseCase
+public class RegisterUserUseCase(IUserReadRepository userReadRepository, IWorkUnity workUnity, IMapper mapper, IPasswordEncripter encripter) : IRegisterUserUseCase
 {
-    private readonly IExpensesWriteRepository _repository = repository;
+    private readonly IUserReadRepository _UserReadRepository = userReadRepository;
     private readonly IWorkUnity _workUnity = workUnity;
     private readonly IMapper _mapper = mapper;
     private readonly IPasswordEncripter _encripter = encripter;
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
     {
-        Validate(request);
+        await Validate(request);
 
         var user = _mapper.Map<User>(request);
         user.Password = _encripter.Encrypt(request.Password);
@@ -34,9 +36,13 @@ public class RegisterUserUseCase(IExpensesWriteRepository repository, IWorkUnity
         };
     }
 
-    private static void Validate(RequestRegisterUserJson request)
+    private async Task Validate(RequestRegisterUserJson request)
     {
         var result = new UserValidator().Validate(request);
+
+        var emailExists = await _UserReadRepository.ExistsActiveUserWithEmail(request.Email);
+
+        if (emailExists) result.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.EMAIL_ALREADY_EXISTS));
 
         if (!result.IsValid)
         {

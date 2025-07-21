@@ -130,21 +130,24 @@
     <value>Erro desconhecido, estamos trabalhando nisso.</value>
   </data>
   <data name="AMOUNT_MUST_GREATER_ZERO" xml:space="preserve">
-    <value>Valor deve ser maior que zero.</value>
+    <value>O valor deve ser maior que zero.</value>
   </data>
   <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
     <value>Despesa não encontrada.</value>
   </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
-    <value>Email não pode ser vazio.</value>
+    <value>O email não pode ser vazio.</value>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
-    <value>Este Email é invalido.</value>
+    <value>Este email é invalido.</value>
   </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>O nome não pode ser vazio.</value>
   </data>
   <data name="INVALID_PASSWORD" xml:space="preserve">
     <value>Use ao menos 8 caracteres, com letra maiúscula, minúscula, número e caractere especial.</value>
+  </data>
+  <data name="EMAIL_ALREADY_EXISTS" xml:space="preserve">
+    <value>Este email já está em uso.</value>
   </data>
 </root>

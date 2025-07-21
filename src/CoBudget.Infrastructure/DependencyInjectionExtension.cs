@@ -1,5 +1,6 @@
 ﻿using CoBudget.Domain.Repositories;
 using CoBudget.Domain.Repositories.Expenses;
+using CoBudget.Domain.Repositories.User;
 using CoBudget.Domain.Security;
 using CoBudget.Infrastructure.DataAccess;
 using CoBudget.Infrastructure.DataAccess.Repositories;
@@ -27,6 +28,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IExpensesWriteRepository, ExpensesRepository>();
         services.AddScoped<IExpensesReadRepository, ExpensesRepository>();
         services.AddScoped<IExpenseUpdateRepository, ExpensesRepository>();
+        services.AddScoped<IUserReadRepository, UserRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
