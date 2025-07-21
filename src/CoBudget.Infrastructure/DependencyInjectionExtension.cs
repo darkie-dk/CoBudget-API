@@ -1,7 +1,10 @@
 ﻿using CoBudget.Domain.Repositories;
 using CoBudget.Domain.Repositories.Expenses;
+using CoBudget.Domain.Repositories.User;
+using CoBudget.Domain.Security;
 using CoBudget.Infrastructure.DataAccess;
 using CoBudget.Infrastructure.DataAccess.Repositories;
+using CoBudget.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +17,9 @@ public static class DependencyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
+
+
+        services.AddScoped<IPasswordEncripter, PasswordEncripter>();
     }
 
     private static void AddRepositories(IServiceCollection services)
@@ -22,6 +28,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IExpensesWriteRepository, ExpensesRepository>();
         services.AddScoped<IExpensesReadRepository, ExpensesRepository>();
         services.AddScoped<IExpenseUpdateRepository, ExpensesRepository>();
+        services.AddScoped<IUserReadRepository, UserRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)

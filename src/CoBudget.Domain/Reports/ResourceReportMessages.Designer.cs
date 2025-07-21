@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoBudget.Domain {
+namespace CoBudget.Domain.Reports {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CoBudget.Domain {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CoBudget.Domain.ResourceReportMessages", typeof(ResourceReportMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CoBudget.Domain.Reports.ResourceReportMessages", typeof(ResourceReportMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
