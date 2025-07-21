@@ -6,6 +6,7 @@ using CoBudget.Application.UseCases.Expenses.Register;
 using CoBudget.Application.UseCases.Expenses.Reports.Excel;
 using CoBudget.Application.UseCases.Expenses.Reports.Pdf;
 using CoBudget.Application.UseCases.Expenses.Update;
+using CoBudget.Application.UseCases.Users.Register;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoBudget.Application
@@ -33,6 +34,8 @@ namespace CoBudget.Application
          
             services.AddScoped<IGenerateExpenseReportExcelUseCase, GenerateExpenseReportExcelUseCase>();
             services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
+
+            services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         }
     }
 }
