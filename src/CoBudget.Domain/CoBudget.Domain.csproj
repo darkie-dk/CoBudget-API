@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="ResourceReportMessages.Designer.cs">
+    <Compile Update="Reports\ResourceReportMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ResourceReportMessages.resx</DependentUpon>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ResourceReportMessages.resx">
+    <EmbeddedResource Update="Reports\ResourceReportMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceReportMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
