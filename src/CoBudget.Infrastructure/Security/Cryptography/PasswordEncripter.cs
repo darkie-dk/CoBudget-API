@@ -1,7 +1,7 @@
-﻿using CoBudget.Domain.Security;
+﻿using CoBudget.Domain.Security.Cryptography;
 using BCrypter = BCrypt.Net.BCrypt;
 
-namespace CoBudget.Infrastructure.Security;
+namespace CoBudget.Infrastructure.Security.Cryptography;
 
 public class PasswordEncripter : IPasswordEncripter
 {
