@@ -1,4 +1,4 @@
-﻿namespace CoBudget.Domain.Security;
+﻿namespace CoBudget.Domain.Security.Cryptography;
 
 public interface IPasswordEncripter
 {
