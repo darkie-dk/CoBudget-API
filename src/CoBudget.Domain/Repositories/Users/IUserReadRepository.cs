@@ -1,4 +1,4 @@
-﻿namespace CoBudget.Domain.Repositories.User;
+﻿namespace CoBudget.Domain.Repositories.Users;
 
 public interface IUserReadRepository
 {

@@ -3,6 +3,7 @@ using CoBudget.Application.UseCases.Expenses.Reports.Pdf.Colors;
 using CoBudget.Application.UseCases.Expenses.Reports.Pdf.Fonts;
 using CoBudget.Domain;
 using CoBudget.Domain.Extensions;
+using CoBudget.Domain.Reports;
 using CoBudget.Domain.Repositories.Expenses;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;

@@ -7,36 +7,34 @@ using CoBudget.Application.UseCases.Expenses.Reports.Excel;
 using CoBudget.Application.UseCases.Expenses.Reports.Pdf;
 using CoBudget.Application.UseCases.Expenses.Update;
 using CoBudget.Application.UseCases.Users.Register;
-using CoBudget.Domain.Security;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CoBudget.Application
+namespace CoBudget.Application;
+
+public static class DependencyInjectionExtension
 {
-    public static class DependencyInjectionExtension
+    public static void AddApplication(this IServiceCollection services)
     {
-        public static void AddApplication(this IServiceCollection services)
-        {
-            AddAutoMapper(services);
-            AddUseCase(services);
-        }
+        AddAutoMapper(services);
+        AddUseCase(services);
+    }
 
-        private static void AddAutoMapper(IServiceCollection services) 
-        {
-            services.AddAutoMapper(typeof(AutoMapping));
-        }
+    private static void AddAutoMapper(IServiceCollection services) 
+    {
+        services.AddAutoMapper(typeof(AutoMapping));
+    }
 
-        private static void AddUseCase(IServiceCollection services) 
-        {
-            services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
-            services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
-            services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
-            services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
-            services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
-         
-            services.AddScoped<IGenerateExpenseReportExcelUseCase, GenerateExpenseReportExcelUseCase>();
-            services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
+    private static void AddUseCase(IServiceCollection services) 
+    {
+        services.AddScoped<IRegisterExpenseUseCase, RegisterExpenseUseCase>();
+        services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
+        services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
+        services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
+        services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
+     
+        services.AddScoped<IGenerateExpenseReportExcelUseCase, GenerateExpenseReportExcelUseCase>();
+        services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
 
-            services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
-        }
+        services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
     }
 }

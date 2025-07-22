@@ -2,6 +2,7 @@
 using CoBudget.Domain;
 using CoBudget.Domain.Enum;
 using CoBudget.Domain.Extensions;
+using CoBudget.Domain.Reports;
 using CoBudget.Domain.Repositories.Expenses;
 
 namespace CoBudget.Application.UseCases.Expenses.Reports.Excel;
