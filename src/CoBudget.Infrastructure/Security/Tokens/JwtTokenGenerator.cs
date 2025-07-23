@@ -12,11 +12,12 @@ public class JwtTokenGenerator(uint expirationTimeMinutes, string signingKey) : 
     private readonly string _signingKey = signingKey;
     public string GenerateToken(User user)
     {
+        var tokenHandler = new JwtSecurityTokenHandler();
+
         var claims = new List<Claim>()
         {
             new Claim("guid", user.UserId.ToString()),
         };
-
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -24,8 +25,6 @@ public class JwtTokenGenerator(uint expirationTimeMinutes, string signingKey) : 
             SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.HmacSha256),
             Subject = new ClaimsIdentity(claims)
         };
-
-        var tokenHandler = new JwtSecurityTokenHandler();
 
         var securityToken = tokenHandler.CreateToken(tokenDescriptor);
 
