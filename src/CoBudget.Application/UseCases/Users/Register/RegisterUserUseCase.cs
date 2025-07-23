@@ -5,17 +5,19 @@ using CoBudget.Domain.Entities;
 using CoBudget.Domain.Repositories;
 using CoBudget.Domain.Repositories.Users;
 using CoBudget.Domain.Security.Cryptography;
+using CoBudget.Domain.Security.Tokens;
 using CoBudget.Exception;
 using CoBudget.Exception.ExceptionsBase;
 using FluentValidation.Results;
 
 namespace CoBudget.Application.UseCases.Users.Register;
 
-public class RegisterUserUseCase(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IWorkUnity workUnity, IMapper mapper, IPasswordEncripter encripter) : IRegisterUserUseCase
+public class RegisterUserUseCase(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IAcessTokenGenerator tokenGenerator, IWorkUnity workUnity, IMapper mapper, IPasswordEncripter encripter) : IRegisterUserUseCase
 {
     private readonly IMapper _mapper = mapper;
     private readonly IWorkUnity _workUnity = workUnity;
     private readonly IPasswordEncripter _encripter = encripter;
+    private readonly IAcessTokenGenerator _tokenGenerator = tokenGenerator;
     private readonly IUserReadRepository _userReadRepository = userReadRepository;
     private readonly IUserWriteRepository _userWriteRepository = userWriteRepository;
 
@@ -36,6 +38,7 @@ public class RegisterUserUseCase(IUserReadRepository userReadRepository, IUserWr
         return new ResponseRegisteredUserJson
         {
             Name = user.Name,
+            Token = _tokenGenerator.GenerateToken(user),
         };
     }
 

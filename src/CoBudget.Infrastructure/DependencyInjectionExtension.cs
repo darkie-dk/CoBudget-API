@@ -2,9 +2,11 @@
 using CoBudget.Domain.Repositories.Expenses;
 using CoBudget.Domain.Repositories.Users;
 using CoBudget.Domain.Security.Cryptography;
+using CoBudget.Domain.Security.Tokens;
 using CoBudget.Infrastructure.DataAccess;
 using CoBudget.Infrastructure.DataAccess.Repositories;
 using CoBudget.Infrastructure.Security.Cryptography;
+using CoBudget.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +19,18 @@ public static class DependencyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
+        AddToken(services, configuration);
 
 
         services.AddScoped<IPasswordEncripter, PasswordEncripter>();
+    }
+
+    public static void AddToken(IServiceCollection services, IConfiguration configuration)
+    {
+        var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpiresMinutes");
+        var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+        services.AddScoped<IAcessTokenGenerator>(config => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
     }
 
     private static void AddRepositories(IServiceCollection services)

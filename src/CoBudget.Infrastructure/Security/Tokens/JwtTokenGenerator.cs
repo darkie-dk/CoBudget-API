@@ -9,19 +9,19 @@ namespace CoBudget.Infrastructure.Security.Tokens;
 public class JwtTokenGenerator(uint expirationTimeMinutes, string signingKey) : IAcessTokenGenerator
 {
     private readonly uint _expirationTimeMinutes = expirationTimeMinutes;
-    private readonly string _signingKey= signingKey;
+    private readonly string _signingKey = signingKey;
     public string GenerateToken(User user)
     {
-        var claims = new List<Claim>();
+        var claims = new List<Claim>()
         {
-            new Claim(ClaimTypes.Sid, user.UserId.ToString());
+            new Claim("guid", user.UserId.ToString()),
         };
 
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Expires = DateTime.UtcNow.AddMinutes(_expirationTimeMinutes),
-            SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.EcdsaSha256),
+            SigningCredentials = new SigningCredentials(SecurityKey(), SecurityAlgorithms.HmacSha256),
             Subject = new ClaimsIdentity(claims)
         };
 
