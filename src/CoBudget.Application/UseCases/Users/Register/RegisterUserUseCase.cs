@@ -12,7 +12,15 @@ using FluentValidation.Results;
 
 namespace CoBudget.Application.UseCases.Users.Register;
 
-public class RegisterUserUseCase(IUserReadRepository userReadRepository, IUserWriteRepository userWriteRepository, IAcessTokenGenerator tokenGenerator, IWorkUnity workUnity, IMapper mapper, IPasswordEncripter encripter) : IRegisterUserUseCase
+public class RegisterUserUseCase
+    (
+        IUserReadRepository userReadRepository, 
+        IUserWriteRepository userWriteRepository, 
+        IAcessTokenGenerator tokenGenerator, 
+        IPasswordEncripter encripter,
+        IWorkUnity workUnity, 
+        IMapper mapper 
+    ) : IRegisterUserUseCase
 {
     private readonly IMapper _mapper = mapper;
     private readonly IWorkUnity _workUnity = workUnity;
