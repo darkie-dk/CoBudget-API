@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <Folder Include="Logo\" />
-    <Folder Include="UseCases\Login\" />
   </ItemGroup>
 
 </Project>

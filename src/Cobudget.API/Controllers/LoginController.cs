@@ -1,4 +1,6 @@
-﻿using CoBudget.Communication.Responses;
+﻿using CoBudget.Application.UseCases.Login;
+using CoBudget.Communication.Request;
+using CoBudget.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cobudget.Api.Controllers;
@@ -10,11 +12,12 @@ public class LoginController : ControllerBase
     [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Login(
-        //[FromServices] IRegisterUserUseCase useCase, [FromBody] RequestRegisterUserJson request
+        [FromServices] ILoginUseCase useCase,
+        [FromBody] RequestLoginJSON request
         )
     {
-        //var response = await useCase.Execute(request);
+        var response = await useCase.Execute(request);
 
-        return Created(string.Empty, string.Empty);
+        return Created(string.Empty, response);
     }
 }
