@@ -18,5 +18,8 @@ internal class UserRepository(CoBudgetDbContext context) : IUserReadRepository, 
         return await _context.Users.AnyAsync(user => user.Email == email);
     }
 
-    
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Email.Equals(email));
+    }
 }

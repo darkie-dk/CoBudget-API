@@ -5,12 +5,14 @@ using CoBudget.Application.UseCases.Expenses.Register;
 using CoBudget.Application.UseCases.Expenses.Update;
 using CoBudget.Communication.Request;
 using CoBudget.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoBudget.api.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize]
 public class ExpensesController : ControllerBase
 {
     [HttpPost]
