@@ -20,8 +20,7 @@ public class LoginUseCase
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJSON request)
     {
-        var user = await _userReadRepository.GetUserByEmail(request.Email);
-        if (user == null) throw new InvalidLoginException();
+        var user = await _userReadRepository.GetUserByEmail(request.Email) ?? throw new InvalidLoginException();
 
         var passwordMatch = _encripter.Verify(request.Password, user.Password);
         if (passwordMatch == false) throw new InvalidLoginException();

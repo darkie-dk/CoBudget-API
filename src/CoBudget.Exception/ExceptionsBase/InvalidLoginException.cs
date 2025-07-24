@@ -12,5 +12,3 @@ public class InvalidLoginException : CoBudgetException
         return [Message];
     }
 }
-{
-}
