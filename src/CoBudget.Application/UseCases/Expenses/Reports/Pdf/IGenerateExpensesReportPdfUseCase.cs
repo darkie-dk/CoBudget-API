@@ -2,5 +2,6 @@
 
 public interface IGenerateExpensesReportPdfUseCase
 {
-    Task<byte[]> Execute(DateOnly date);
+    //Task<byte[]> Execute();
+    byte[] GerarRelatorioComTabela();
 }

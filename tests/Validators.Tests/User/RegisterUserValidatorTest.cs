@@ -5,7 +5,7 @@ using Shouldly;
 
 namespace Validators.Tests.User;
 
-public class RegisterUserValidatorTests
+public class RegisterUserValidatorTest
 {
     [Fact]
     public void Success()

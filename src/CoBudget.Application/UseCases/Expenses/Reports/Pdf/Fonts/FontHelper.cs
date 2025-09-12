@@ -2,11 +2,12 @@
 
 public class FontHelper
 {
-    public const string RALEWAY_REGULAR = "Raleway-Regular";
-    public const string RALEWAY_BLACK = "Raleway-Black";
-    public const string WORKSANS_REGULAR = "WorkSans-Regular";
-    public const string WORKSANS_BLACK = "WorkSans-Black";
+    public const string GOTHAM_LIGHT = "GOTHAM-LIGHT";
+    public const string GOTHAM_MEDIUM = "GOTHAM-MEDIUM";
+    public const string GOTHAM_BOLD = "GOTHAM-BOLD";
+    public const string GOTHAM_BLACK = "GOTHAM-BLACK";
+    
 
-    public const string DEFAULT_FONT = WORKSANS_REGULAR;
+    public const string DEFAULT_FONT = GOTHAM_LIGHT;
 
 }

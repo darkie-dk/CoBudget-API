@@ -1,10 +1,9 @@
 ﻿using System.Reflection;
-using MigraDoc.DocumentObjectModel;
 using PdfSharp.Fonts;
 
 namespace CoBudget.Application.UseCases.Expenses.Reports.Pdf.Fonts;
 
-public class ExpensesReportFontResolver : IFontResolver
+public class ReportFontResolver : IFontResolver
 {
     public byte[]? GetFont(string faceName)
     {
@@ -20,13 +19,13 @@ public class ExpensesReportFontResolver : IFontResolver
 
     public FontResolverInfo? ResolveTypeface(string familyName, bool bold, bool italic)
     {
-        return new FontResolverInfo(familyName);    
+        return new FontResolverInfo(familyName);
     }
-        
-    private static Stream? ReadFontFile(string faceName)
+
+    private Stream? ReadFontFile(string faceName)
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        return assembly.GetManifestResourceStream($"CoBudget.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
+        return assembly.GetManifestResourceStream($"CoBudget.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.TTF");
     }
 }

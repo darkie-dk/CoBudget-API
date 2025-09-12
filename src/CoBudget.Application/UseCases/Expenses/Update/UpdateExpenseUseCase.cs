@@ -7,10 +7,10 @@ using CoBudget.Exception.ExceptionsBase;
 
 namespace CoBudget.Application.UseCases.Expenses.Update;
 
-public class UpdateExpenseUseCase(IExpenseUpdateRepository repository, IWorkUnity workUnity, IMapper mapper) : IUpdateExpenseUseCase
+public class UpdateExpenseUseCase(IExpenseUpdateRepository repository, IWorkUnit workUnity, IMapper mapper) : IUpdateExpenseUseCase
 {
     private readonly IExpenseUpdateRepository _repository = repository;
-    private readonly IWorkUnity _workUnity = workUnity;
+    private readonly IWorkUnit _workUnity = workUnity;
     private readonly IMapper _mapper = mapper;
 
     public async Task Execute(long id, RequestExpenseJson request)

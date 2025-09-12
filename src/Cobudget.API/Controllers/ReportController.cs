@@ -24,18 +24,18 @@ public class ReportController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("pdf")]
+    [HttpGet("pdfmock")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetPdf([FromQuery] DateOnly date, [FromServices] IGenerateExpensesReportPdfUseCase useCase)
+    public IActionResult PdfMock([FromServices] IGenerateExpensesReportPdfUseCase useCase)
     {
-        byte[] file = await useCase.Execute(date);
+        byte[] file = useCase.GerarRelatorioComTabela();
 
         if (file.Length > 0)
         {
-            return File(file, MediaTypeNames.Application.Pdf, $"report_{date}.pdf");
+            return File(file, MediaTypeNames.Application.Pdf, $"report_mock.pdf");
         }
 
         return NoContent();
-        }
+    }
 }

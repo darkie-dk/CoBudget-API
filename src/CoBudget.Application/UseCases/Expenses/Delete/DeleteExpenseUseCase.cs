@@ -7,10 +7,10 @@ using CoBudget.Exception.ExceptionsBase;
 
 namespace CoBudget.Application.UseCases.Expenses.Delete;
 
-public class DeleteExpenseUseCase(IExpensesWriteRepository expensesRepository, IWorkUnity workUnit) : IDeleteExpenseUseCase
+public class DeleteExpenseUseCase(IExpensesWriteRepository expensesRepository, IWorkUnit workUnit) : IDeleteExpenseUseCase
 {
     private readonly IExpensesWriteRepository _expensesWriteRepository = expensesRepository;
-    private readonly IWorkUnity _workUnit = workUnit;
+    private readonly IWorkUnit _workUnit = workUnit;
 
     public async Task Execute(long id)
     {

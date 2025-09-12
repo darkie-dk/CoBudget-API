@@ -9,10 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" />
     <PackageReference Include="Bogus" />
+    <PackageReference Include="Moq" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CoBudget.Application\CoBudget.Application.csproj" />
     <ProjectReference Include="..\..\src\CoBudget.Communication\CoBudget.Communication.csproj" />
   </ItemGroup>
 

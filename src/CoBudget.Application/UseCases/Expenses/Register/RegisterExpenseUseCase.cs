@@ -8,10 +8,10 @@ using CoBudget.Exception.ExceptionsBase;
 
 namespace CoBudget.Application.UseCases.Expenses.Register;
 
-public class RegisterExpenseUseCase(IExpensesWriteRepository repository, IWorkUnity workUnity, IMapper mapper) : IRegisterExpenseUseCase
+public class RegisterExpenseUseCase(IExpensesWriteRepository repository, IWorkUnit workUnity, IMapper mapper) : IRegisterExpenseUseCase
 {
     private readonly IExpensesWriteRepository _repository = repository;
-    private readonly IWorkUnity _workUnity = workUnity;
+    private readonly IWorkUnit _workUnity = workUnity;
     private readonly IMapper _mapper = mapper;
 
     public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)

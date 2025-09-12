@@ -22,7 +22,7 @@ public static class DependencyInjectionExtension
 
     private static void AddAutoMapper(IServiceCollection services) 
     {
-        services.AddAutoMapper(typeof(AutoMapping));
+        services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapping>());
     }
 
     private static void AddUseCase(IServiceCollection services) 

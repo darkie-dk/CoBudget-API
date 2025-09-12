@@ -1,6 +1,6 @@
 ﻿namespace CoBudget.Domain.Repositories;
 
-public interface IWorkUnity
+public interface IWorkUnit
 {
     Task Commit();
 }

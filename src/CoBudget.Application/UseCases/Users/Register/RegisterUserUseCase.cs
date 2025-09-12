@@ -18,12 +18,12 @@ public class RegisterUserUseCase
         IUserWriteRepository userWriteRepository, 
         IAcessTokenGenerator tokenGenerator, 
         IPasswordEncripter encripter,
-        IWorkUnity workUnity, 
+        IWorkUnit workUnity, 
         IMapper mapper 
     ) : IRegisterUserUseCase
 {
     private readonly IMapper _mapper = mapper;
-    private readonly IWorkUnity _workUnity = workUnity;
+    private readonly IWorkUnit _workUnity = workUnity;
     private readonly IPasswordEncripter _encripter = encripter;
     private readonly IAcessTokenGenerator _tokenGenerator = tokenGenerator;
     private readonly IUserReadRepository _userReadRepository = userReadRepository;
